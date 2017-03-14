@@ -3,6 +3,19 @@
 if ($argc == 3 && (is_numeric($argv[1]) && is_numeric($argv[2]))) {
 	$min = $argv[1];
 	$max = $argv[2];
+	do {
+		if ($min > $max) {
+			fwrite(STDOUT, "Oops! Your min number was larger than your max number. Please try again: " . PHP_EOL);
+			do {
+				fwrite(STDOUT, "Please choose a min number: ");
+				$min = trim(fgets(STDIN));
+			} while (!is_numeric($min));
+			do {
+				fwrite(STDOUT, "Please choose a max number: ");
+				$max = trim(fgets(STDIN));
+			} while (!is_numeric($max));
+		}
+	} while ($min > $max);
 } elseif ($argc == 3 && (is_numeric($argv[1]) || is_numeric($argv[2]))) {	
 	fwrite(STDOUT, "Error: At least one of your inputs is not a numeric value" . PHP_EOL);	
 	do {

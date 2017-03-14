@@ -11,18 +11,18 @@ if ($argc == 3) {
 $randomNumber = mt_rand($min, $max);
 $numberOfGuesses = 0;
 
-fwrite(STDOUT, "Guess a number between $min-$max:" . PHP_EOL);
+fwrite(STDOUT, "Guess a number between $min-$max: ");
 $answer = fgets(STDIN);
 
 while ($randomNumber !== $answer) {
 	if ($answer > $randomNumber) {
 		$numberOfGuesses += 1;
-		$message = "LOWER... Guess Again:" . PHP_EOL;
+		$message = "LOWER... Guess Again: ";
 		fwrite(STDOUT, $message);
 		$answer = fgets(STDIN);
 	} elseif ($answer < $randomNumber) {
 		$numberOfGuesses += 1;
-		$message = "HIGHER... Guess Again:" . PHP_EOL;
+		$message = "HIGHER... Guess Again: ";
 		fwrite(STDOUT, $message);
 		$answer = fgets(STDIN);
 	} else {

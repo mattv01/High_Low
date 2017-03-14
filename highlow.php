@@ -1,26 +1,34 @@
 <?php
 
-$randomNumber = mt_rand(1, 100);
+if ($argc == 3) {
+	$min = $argv[1];
+	$max = $argv[2];
+} else {	
+	$min = 1;
+	$max = 100;
+}
+
+$randomNumber = mt_rand($min, $max);
 $numberOfGuesses = 0;
 
-fwrite(STDOUT, "Guess a number between 1-100:" . PHP_EOL);
+fwrite(STDOUT, "Guess a number between $min-$max:" . PHP_EOL);
 $answer = fgets(STDIN);
 
 while ($randomNumber !== $answer) {
 	if ($answer > $randomNumber) {
-		echo "LOWER..." . PHP_EOL;
 		$numberOfGuesses += 1;
-		fwrite(STDOUT, "Guess Again:" . PHP_EOL);
+		$message = "LOWER... Guess Again:" . PHP_EOL;
+		fwrite(STDOUT, $message);
 		$answer = fgets(STDIN);
 	} elseif ($answer < $randomNumber) {
-		echo "HIGHER..." . PHP_EOL;
 		$numberOfGuesses += 1;
-		fwrite(STDOUT, "Guess Again:" . PHP_EOL);
+		$message = "HIGHER... Guess Again:" . PHP_EOL;
+		fwrite(STDOUT, $message);
 		$answer = fgets(STDIN);
 	} else {
-		echo "GOOD GUESS!" . PHP_EOL;
 		$numberOfGuesses += 1;
-		echo "It only took you $numberOfGuesses guesses!" . PHP_EOL;
+		$message = "GOOD GUESS! It only took you $numberOfGuesses guesses!" . PHP_EOL;
+		fwrite(STDOUT, $message);
 		break;
 	}
 }

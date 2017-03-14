@@ -1,6 +1,6 @@
 <?php
 
-if ($argc == 3) {
+if ($argc == 3 && (is_numeric($argv[1]) && is_numeric($argv[2]))) {
 	$min = $argv[1];
 	$max = $argv[2];
 } else {	

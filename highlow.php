@@ -26,6 +26,19 @@ if ($argc == 3 && (is_numeric($argv[1]) && is_numeric($argv[2]))) {
 		fwrite(STDOUT, "Please choose a max number: ");
 		$max = trim(fgets(STDIN));
 	} while (!is_numeric($max));
+	do {
+		if ($min > $max) {
+			fwrite(STDOUT, "Oops! Your min number was larger than your max number. Please try again: " . PHP_EOL);
+			do {
+				fwrite(STDOUT, "Please choose a min number: ");
+				$min = trim(fgets(STDIN));
+			} while (!is_numeric($min));
+			do {
+				fwrite(STDOUT, "Please choose a max number: ");
+				$max = trim(fgets(STDIN));
+			} while (!is_numeric($max));
+		}
+	} while ($min > $max);
 } else {
 	$min = 1;
 	$max = 100;
@@ -59,3 +72,21 @@ while ($randomNumber !== $answer) {
 		break;
 	}
 }
+
+
+
+// function checkMinMax() {
+// 	do {
+// 		if ($min > $max) {
+// 			fwrite(STDOUT, "Oops! Your min number was larger than your max number. Please try again: " . PHP_EOL);
+// 			do {
+// 				fwrite(STDOUT, "Please choose a min number: ");
+// 				$min = trim(fgets(STDIN));
+// 			} while (!is_numeric($min));
+// 			do {
+// 				fwrite(STDOUT, "Please choose a max number: ");
+// 				$max = trim(fgets(STDIN));
+// 			} while (!is_numeric($max));
+// 		}
+// 	} while ($min > $max);
+// }
